@@ -11,8 +11,8 @@ output_txt = os.path.join(base_directory, "output.txt")
 image_path = r"C:\\Users\\carlo\\Documents\\Coding20241205\\audacity_script\\picture_refence"
 blue_image = cv2.imread(os.path.join(image_path, "blue.png"))
 gray_image = cv2.imread(os.path.join(image_path, "gray.png"))
-blue_image_resized = cv2.resize(blue_image, (300, 50))  # Adjust size as per requirements
-gray_image_resized = cv2.resize(gray_image, (300, 50))
+blue_image_resized = cv2.resize(blue_image, (225, 21))  # Adjust size as per requirements
+gray_image_resized = cv2.resize(gray_image, (207, 22))
 loop_limit = 1000
 
 def open_file(file_name):
