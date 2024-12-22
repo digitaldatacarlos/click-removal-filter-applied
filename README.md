@@ -1,0 +1,1 @@
+# click-removal-filter-applied
