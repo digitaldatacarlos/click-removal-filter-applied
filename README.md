@@ -1,28 +1,4 @@
-``` mynotes
-# click-removal-filter-applied
 
-# What are those things?
-loop_limit = 9 is for how many times it will check if a filter has been applied or not. this needs to be much higher in value if its a 12 hour clip while value 9 works for 1hour and 30 minutes . at 1hour and 30 minutes it ends at attempt 7/9 (7 out of 9)
-
-
-save_and_close_file() function is a bit tricky. it needs 20 seconds before the "compressing file" pop window starts to dissapear. after 20 seconds then it has for sure dissapeared and then it closes the audacity window and then the next aup3 file opens up. 20 seconds works for 1 hour and 30 minutes files, but needs to be much higher in 12 hour clips.
-
-# Why did I create this script?
-the whole point of this script is to apply the filter "click removal" to the whole audacity file. 
-
-# What problem was i trying to solve with this script?
-
-I tried to use Nyquist to apply the filter but it didnt work since its an old unmaintanted way of programming audacity which existed from the start of Audacity. I tried to use Python libraries that reduce sounds but none of them had a feature to remove click sounds for neither aup3 or wav files.
-
-# How did this script solve the problem?
-I used opencv with pictures on when the filter was applied. I used a lot of debugging statements to see where things worked and did not work. 
-
-# I want to use this script. What do I need to change to make it work on computer?
-You have to use windows 10, i dont know if the background colors changes or not in other operative systems when you press alt+e to bring out the Edit tab. Maybe it works for other operative systems as well. Its just mainly a color issue around the text "Undo click removal" in the audacity UI.
-
-If you want to use this then you have to create your own pictures of the buttons of "Undo click removal" in the Edit tab. One that has a blue background and one that has grey background.
-
-You have to bind "apply click removal filter" to the hotkey H through settings. ```
 
 # Click Removal Filter Applied
 
