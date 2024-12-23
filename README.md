@@ -102,5 +102,5 @@ This project is licensed under the MIT License. Feel free to use, modify, and di
 ---
 
 ## Contact
-For questions or feedback, please reach out via GitHub issues or directly at [your email/contact information].
+For questions or feedback, please reach out via GitHub issues or directly to my email.
 
