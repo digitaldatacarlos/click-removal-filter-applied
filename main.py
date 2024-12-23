@@ -11,18 +11,40 @@ output_txt = os.path.join(base_directory, "output.txt")
 image_path = r"C:\\Users\\carlo\\Documents\\Coding20241205\\audacity_script\\picture_refence"
 blue_image_path = os.path.join(image_path, "blue.png")
 gray_image_path = os.path.join(image_path, "gray.png")
+compacting_image_path = os.path.join(image_path, "compacting.png")
+
 blue_image = cv2.imread(blue_image_path)
 gray_image = cv2.imread(gray_image_path)
+compacting_image = cv2.imread(compacting_image_path)
 
-if blue_image is None or gray_image is None:
+if blue_image is None or gray_image is None or compacting_image is None:
     print("Error: Unable to load reference images. Check file paths.")
     print(f"Blue image path: {blue_image_path}")
     print(f"Gray image path: {gray_image_path}")
+    print(f"Compacting image path: {compacting_image_path}")
     exit(1)
 
 blue_image_resized = cv2.resize(blue_image, (225, 21))
 gray_image_resized = cv2.resize(gray_image, (207, 22))
-loop_limit = 2
+compacting_image_resized = cv2.resize(compacting_image, (131, 29))
+loop_limit = 9
+
+def wait_for_compacting_to_disappear():
+    print("Checking for 'Compress Time' pop-up...")
+    time.sleep(4)
+    while True:
+        screenshot = pyautogui.screenshot()
+        screenshot = cv2.cvtColor(np.array(screenshot), cv2.COLOR_RGB2BGR)
+
+        result_compacting = cv2.matchTemplate(screenshot, compacting_image_resized, cv2.TM_CCOEFF_NORMED)
+        max_val_compacting = cv2.minMaxLoc(result_compacting)[1]
+
+        if max_val_compacting > 0.8:
+            print("'Compress Time' pop-up detected. Waiting...")
+            time.sleep(2)
+        else:
+            print("'Compress Time' pop-up not detected. Proceeding...")
+            break
 
 def open_file(file_name):
     file_path = os.path.join(base_directory, file_name)
@@ -111,7 +133,7 @@ def save_and_close_file(file):
 
         pyautogui.hotkey("ctrl", "w")
         print(f"File {file} closed successfully.")
-        time.sleep(3)
+        time.sleep(20)
     except Exception as e:
         print(f"Error saving or closing file {file}: {e}")
         raise
@@ -129,6 +151,7 @@ def main():
             print(f"Processing file {idx + 1}/{len(files)}: {file}")
             try:
                 open_file(file)
+                wait_for_compacting_to_disappear()
                 apply_click_removal()
                 save_and_close_file(file)
             except Exception as e:
